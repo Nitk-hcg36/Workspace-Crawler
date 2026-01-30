@@ -1,0 +1,29 @@
+name: Smartsheet Workspace Extract
+
+on:
+  workflow_dispatch:   # manual trigger for now, can later schedule
+
+permissions:
+  contents: read       # no write needed if not committing files
+  
+jobs:
+  webhook-management:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pandas requests urllib3 smartsheet-python-sdk
+
+      - name: Run workspace management extractor
+        env:
+          SS_TOKEN: ${{ secrets.SS_TOKEN }}
+          SM_SHEET_ID: ${{ secrets.SM_SHEET_ID }}
+        run: python workspace.py
