@@ -23,7 +23,7 @@ SHEET_COLUMNS = [
 
 # API to fetch Smartsheet users
 API_TOKEN = SMARTSHEET_TOKEN
-URL = "https://api.smartsheet.com/2.0/sights"
+URL = "https://api.smartsheet.com/2.0/workspaces"
 HEADERS = {
     "Authorization": f"Bearer {API_TOKEN}",
     "Accept": "application/json"
